@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guojia.resttemplatedemo.demos.mapper.ProductMapper">
+
+    <select id="findAllProduct" resultType="com.guojia.resttemplatedemo.demos.entity.Product">
+        select * from product
+    </select>
+    <select id="findProductById" resultType="Product">
+        select * from product where pid=#{pid}
+    </select>
+    <delete id="DeleteProductById" >
+        delete from product where pid=#{pid}
+    </delete>
+    <update id="UpdateProductById" parameterType="Product">
+        update Product
+        <set>
+            <if test="pname !=null and pname !=''">
+                pname=#{pname},
+            </if>
+            <if test="pdescription !=null and pdescription !=''">
+                pdescription=#{pdescription},
+            </if>
+            <if test="ptype !=null and ptype !=''">
+                ptype=#{ptype},
+            </if>
+            <if test="pinventory !=null and pinventory !=''">
+                pinventory=#{pinventory},
+            </if>
+            <if test="punitprice !=null and punitprice !=''">
+                punitprice=#{punitprice},
+            </if>
+            <if test="pcreationtime !=null and pcreationtime !=''">
+                pcreationtime=#{pcreationtime},
+            </if>
+            <if test="pupdatetime !=null and pupdatetime !=''">
+                pupdatetime=#{pupdatetime}
+            </if>
+        </set>
+        where pid=#{pid}
+    </update>
+</mapper>
